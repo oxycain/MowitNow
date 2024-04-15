@@ -3,7 +3,7 @@ package gui
 import scala.swing._
 import scala.swing.event._
 import javax.swing.ImageIcon
-import services.Jardinage
+import services.{Jardinage, Parser}
 import java.io.File
 import java.awt.{Graphics2D, Image}
 
@@ -59,7 +59,7 @@ object TondeuseGUI extends SimpleSwingApplication {
       case ButtonClicked(`button`) =>
         val result = fileChooser.showOpenDialog(null)
         if (result == FileChooser.Result.Approve) {
-          val (pelouse, tondeuses) = Jardinage.readInstructions(fileChooser.selectedFile.getAbsolutePath)
+          val (pelouse, tondeuses) = Parser.readInstructions(fileChooser.selectedFile.getAbsolutePath)
           pelousePanel.setImage("resources/after.jpg")
           tondeuses.zipWithIndex.foreach { case ((tondeuse, instructions), index) =>
             val result = Jardinage.executeInstructions(pelouse, tondeuse, instructions)
