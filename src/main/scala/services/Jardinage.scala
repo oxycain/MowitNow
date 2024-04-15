@@ -4,7 +4,7 @@ import models.{Orientation, Pelouse, Position, Tondeuse}
 import scala.io.Source
 import scala.io.StdIn
 
-object Simulation {
+object Jardinage {
   def readInstructions(filePath: String): (Pelouse, List[(Tondeuse, String)]) = {
     val lines = Source.fromFile(filePath).getLines().toList
     val dimensions = lines.head.split(" ").map(_.toInt)

@@ -3,7 +3,7 @@ package gui
 import scala.swing._
 import scala.swing.event._
 import javax.swing.ImageIcon
-import services.Simulation
+import services.Jardinage
 import java.io.File
 import java.awt.{Graphics2D, Image}
 
@@ -59,10 +59,10 @@ object TondeuseGUI extends SimpleSwingApplication {
       case ButtonClicked(`button`) =>
         val result = fileChooser.showOpenDialog(null)
         if (result == FileChooser.Result.Approve) {
-          val (pelouse, tondeuses) = Simulation.readInstructions(fileChooser.selectedFile.getAbsolutePath)
+          val (pelouse, tondeuses) = Jardinage.readInstructions(fileChooser.selectedFile.getAbsolutePath)
           pelousePanel.setImage("resources/after.jpg")
           tondeuses.zipWithIndex.foreach { case ((tondeuse, instructions), index) =>
-            val result = Simulation.executeInstructions(pelouse, tondeuse, instructions)
+            val result = Jardinage.executeInstructions(pelouse, tondeuse, instructions)
             Dialog.showMessage(contents.head, s"La tondeuse $index se trouve à (${result.position.x}, " +
               s"${result.position.y}) orientée ${result.orientation}", title="Position Finale")
           }
