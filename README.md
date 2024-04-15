@@ -57,6 +57,8 @@ Pour exécuter la simulation, vous pouvez utiliser sbt pour démarrer l'applicat
 
 Cette commande démarrera l'interface utilisateur. Depuis l'interface, vous pouvez cliquer sur le bouton "Jardiner" puis charger le fichier d'instructions à l'aide du sélecteur de fichiers.
 
+-> Si vous ne souhaitez pas utiliser la ligne de commande et sbt pour l'execution, vous pouvez très bien run la fonction TondeuseGUI pour lancer l'application.
+
 #### Format du Fichier d'Entrée
 
 Le fichier d'entrée doit être structuré comme suit :
