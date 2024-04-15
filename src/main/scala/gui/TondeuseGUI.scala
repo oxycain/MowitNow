@@ -31,7 +31,6 @@ object TondeuseGUI extends SimpleSwingApplication {
     title = "Simulateur de Tondeuse"
     preferredSize = new Dimension(800, 600)
 
-
     val pelousePanel = new ImagePanel("resources/mow-your-lawn.jpg") {
       preferredSize = new Dimension(600, 300)
       border = Swing.EmptyBorder(10, 10, 10, 10)

@@ -68,7 +68,8 @@ class ParserTest extends AnyFlatSpec with Matchers {
       case Right(_) =>
         fail("Expected failure for non-existent file but parsing succeeded.")
       case Left(error) =>
-        error should include("Aucun fichier")
+        error should include("Erreur : Aucun fichier trouvé")
     }
   }
 }
+
