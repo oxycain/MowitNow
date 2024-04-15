@@ -23,7 +23,7 @@ Le projet est divisé en plusieurs packages Scala qui ensemble forment un systè
 Environnement Technique
 -----------------------
 
--   Langage de programmation : Scala -version 
+-   Langage de programmation : Scala
 -   Version de Scala : 2.11.12
 -   Librairies :
     -   ScalaTest 3.0.0 pour les tests unitaires
