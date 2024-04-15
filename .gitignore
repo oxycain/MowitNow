@@ -1,0 +1,25 @@
+# Fichiers et dossiers générés par IntelliJ
+.idea/
+*.iml
+*.iws
+
+# Dossiers générés par SBT
+target/
+project/target/
+project/project/
+.cache
+.history
+lib_managed/
+src_managed/
+
+# Fichiers de logs
+*.log
+
+# Autres fichiers à ignorer
+*.class
+*.swp
+*.swo
+
+# Fichiers temporaires
+tmp/
+temp/
