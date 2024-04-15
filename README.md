@@ -25,6 +25,7 @@ Environnement Technique
 
 -   Langage de programmation : Scala
 -   Version de Scala : 2.11.12
+-   sbt-version = 1.9.9
 -   Librairies :
     -   ScalaTest 3.0.0 pour les tests unitaires
     -   Scala Swing 3.2.17 pour l'interface graphique
