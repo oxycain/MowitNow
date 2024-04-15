@@ -63,8 +63,10 @@ object TondeuseGUI extends SimpleSwingApplication {
           pelousePanel.setImage("resources/after.jpg")
           tondeuses.zipWithIndex.foreach { case ((tondeuse, instructions), index) =>
             val result = Simulation.executeInstructions(pelouse, tondeuse, instructions)
-            Dialog.showMessage(contents.head, s"La tondeuse $index se trouve à (${result.position.x}, ${result.position.y}) orientée ${result.orientation}", title="Position Finale")
+            Dialog.showMessage(contents.head, s"La tondeuse $index se trouve à (${result.position.x}, " +
+              s"${result.position.y}) orientée ${result.orientation}", title="Position Finale")
           }
+          pelousePanel.setImage("resources/mow-your-lawn.jpg")
         }
     }
   }
