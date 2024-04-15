@@ -20,14 +20,14 @@ object Jardinage {
     println("Veuillez entrer le chemin du fichier d'instructions:")
     val filePath = StdIn.readLine()
 
-    try {
-      val (pelouse, tondeuses) = readInstructions(filePath)
-      tondeuses.zipWithIndex.foreach { case ((tondeuse, instructions), index) =>
-        val result = executeInstructions(pelouse, tondeuse, instructions)
-        println(s"C'est la fin du jardinage : La tondeuse ${index + 1} est à la position (${result.position.x}, ${result.position.y}) et est orientée vers ${result.orientation}")
-      }
-    } catch {
-      case ex: Exception => println(s"Erreur lors de la lecture ou du traitement du fichier: ${ex.getMessage}")
+    readInstructions(filePath) match {
+      case Right((pelouse, tondeuses)) =>
+        tondeuses.zipWithIndex.foreach { case ((tondeuse, instructions), index) =>
+          val result = executeInstructions(pelouse, tondeuse, instructions)
+          println(s"C'est la fin du jardinage : La tondeuse ${index + 1} est à la position (${result.position.x}, ${result.position.y}) et est orientée vers ${result.orientation}")
+        }
+      case Left(errorMessage) =>
+        println(s"Erreur lors de la lecture ou du traitement du fichier: $errorMessage")
     }
   }
 }

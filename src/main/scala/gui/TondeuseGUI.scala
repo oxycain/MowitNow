@@ -59,14 +59,18 @@ object TondeuseGUI extends SimpleSwingApplication {
       case ButtonClicked(`button`) =>
         val result = fileChooser.showOpenDialog(null)
         if (result == FileChooser.Result.Approve) {
-          val (pelouse, tondeuses) = Parser.readInstructions(fileChooser.selectedFile.getAbsolutePath)
-          pelousePanel.setImage("resources/after.jpg")
-          tondeuses.zipWithIndex.foreach { case ((tondeuse, instructions), index) =>
-            val result = Jardinage.executeInstructions(pelouse, tondeuse, instructions)
-            Dialog.showMessage(contents.head, s"La tondeuse $index se trouve à (${result.position.x}, " +
-              s"${result.position.y}) orientée ${result.orientation}", title="Position Finale")
+          Parser.readInstructions(fileChooser.selectedFile.getAbsolutePath) match {
+            case Right((pelouse, tondeuses)) =>
+              pelousePanel.setImage("resources/after.jpg")
+              tondeuses.zipWithIndex.foreach { case ((tondeuse, instructions), index) =>
+                val result = Jardinage.executeInstructions(pelouse, tondeuse, instructions)
+                Dialog.showMessage(contents.head, s"La tondeuse $index se trouve à (${result.position.x}, " +
+                  s"${result.position.y}) orientée ${result.orientation}", title="Position Finale")
+              }
+              pelousePanel.setImage("resources/mow-your-lawn.jpg")
+            case Left(errorMessage) =>
+              Dialog.showMessage(contents.head, s"Erreur : $errorMessage", title="Erreur de Chargement", Dialog.Message.Error)
           }
-          pelousePanel.setImage("resources/mow-your-lawn.jpg")
         }
     }
   }
