@@ -7,17 +7,24 @@ import services.Simulation
 import java.io.File
 import java.awt.{Graphics2D, Image}
 
-class ImagePanel(imagePath: String) extends Panel {
-  private val image: Image = new ImageIcon(imagePath).getImage
+
+class ImagePanel(var imagePath: String) extends Panel {
+  private var image: Image = new ImageIcon(imagePath).getImage
+
+  def setImage(newImagePath: String): Unit = {
+    image = new ImageIcon(newImagePath).getImage
+    imagePath = newImagePath
+    repaint()
+  }
 
   override def paintComponent(g: Graphics2D): Unit = {
-  super.paintComponent(g)
-  if (image != null) {
-    g.drawImage(image, 0, 0, peer.getWidth, peer.getHeight, peer)
+    super.paintComponent(g)
+    if (image != null) {
+      g.drawImage(image, 0, 0, peer.getWidth, peer.getHeight, peer)
+    }
   }
-  }
-
 }
+
 
 object TondeuseGUI extends SimpleSwingApplication {
   def top = new MainFrame {
@@ -53,6 +60,7 @@ object TondeuseGUI extends SimpleSwingApplication {
         val result = fileChooser.showOpenDialog(null)
         if (result == FileChooser.Result.Approve) {
           val (pelouse, tondeuses) = Simulation.readInstructions(fileChooser.selectedFile.getAbsolutePath)
+          pelousePanel.setImage("resources/after.jpg")
           tondeuses.zipWithIndex.foreach { case ((tondeuse, instructions), index) =>
             val result = Simulation.executeInstructions(pelouse, tondeuse, instructions)
             Dialog.showMessage(contents.head, s"La tondeuse $index se trouve à (${result.position.x}, ${result.position.y}) orientée ${result.orientation}", title="Position Finale")
